@@ -1,0 +1,113 @@
+group 'cz.aipsafe.ksafe'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin2js'
+apply plugin: 'war'
+apply plugin: 'maven-publish'
+
+buildscript {
+    ext.kotlin_version = '1.1.4-dev-600'//'1.1.2-4'
+
+    repositories {
+        mavenCentral()
+        maven {
+            url  "https://dl.bintray.com/kotlin/kotlin-dev/"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url  "https://dl.bintray.com/kotlin/kotlin-dev/"
+    }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    //compile 'org.jetbrains.kotlinx:kotlinx-html-js:0.6.3'
+    compile "org.jetbrains.kotlinx:kotlinx-html-js:bootstrap-1.1.4-dev-58-49"
+}
+
+build.doLast {
+    copy {
+        into "/build/libs"
+        from configurations.compile
+    }
+}
+
+compileKotlin2Js {
+    //kotlinOptions.outputFile = "build/web/app.js"
+    //.moduleKind = "amd"
+    kotlinOptions.sourceMap = true
+}
+
+task downloadDependencies {
+
+    dependsOn jar
+
+    copy {
+        into "/build/libs"
+        from configurations.compile
+    }
+}
+
+task extractJSJars {
+
+    dependsOn jar, downloadDependencies
+
+    def guiJars = fileTree("${projectDir}/build/libs").include('*.jar')
+    def guiSourcesDir = fileTree("${projectDir}/src/main")
+    def guiOutputDir = "$buildDir/js"
+
+    inputs.files(guiJars)
+    inputs.files(guiSourcesDir)
+    outputs.dir(guiOutputDir)
+
+    doLast {
+        def guiContent = guiJars.collect {jarContent->
+            zipTree(jarContent).filter {file->
+                file.path.endsWith(".js") || file.path.endsWith(".map")
+            }
+        }
+        copy {
+            from guiContent
+            into guiOutputDir
+
+            filter {line->
+                line.replace("file://C:/projects/safe/ksafe/ksafe/gui/src/main/", "src/")
+            }
+
+        }
+
+        copy {
+            from guiSourcesDir
+            into "${guiOutputDir}/src"
+        }
+
+    }
+}
+
+
+/*
+jar.enabled = true
+*/
+war {
+    dependsOn extractJSJars
+    inputs.dir("${projectDir}/build/js")
+    from("${projectDir}/build/js") {
+        into "js"
+    }
+    war.classpath = fileTree("${projectDir}/javalibs")//does not exist
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}

@@ -1,0 +1,4 @@
+rootProject.name = 'safe'
+include 'www'
+include 'gui'
+
