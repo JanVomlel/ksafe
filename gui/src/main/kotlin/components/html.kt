@@ -1,14 +1,12 @@
-package cz.aipsafe.ksafe.html
+package cz.aipsafe.ksafe.gui.components.html
 
 import kotlinx.html.dom.create
 import kotlinx.html.js.*
 import org.w3c.dom.*
-import org.w3c.dom.events.Event
 import kotlin.browser.document
 import kotlin.dom.appendText
 import kotlin.dom.clear
 import kotlin.reflect.KMutableProperty0
-
 
 fun <T: HTMLElement> T.generate (block: HTMLDOMGenerator<T>.()->Unit) {
     HTMLDOMGenerator(this).apply(block)
@@ -150,4 +148,3 @@ class HTMLDOMGenerator<T: HTMLElement>(val forElement: T? = null) {
         return accept(document.create.legend(), property, block)
     }
 }
-

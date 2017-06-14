@@ -1,10 +1,10 @@
-package cz.aipsafe.ksafe.gui
+package cz.aipsafe.ksafe.gui.main
 
-import cz.aipsafe.ksafe.gui.app.AppSetup
-import cz.aipsafe.ksafe.gui.module.ModuleSetup
-import cz.aipsafe.ksafe.gui.root.RootComponent
-import cz.aipsafe.ksafe.gui.search.SearchPageSetup
-import cz.aipsafe.ksafe.gui.services.login.HttpServices
+import cz.aipsafe.ksafe.gui.components.root.RootComponent
+import cz.aipsafe.ksafe.gui.services.HttpServices
+import cz.aipsafe.ksafe.gui.setup.AppSetup
+import cz.aipsafe.ksafe.gui.setup.ModuleSetup
+import cz.aipsafe.ksafe.gui.setup.SearchPageSetup
 import kotlin.browser.document
 
 fun example() {

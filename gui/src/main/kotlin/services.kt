@@ -1,4 +1,7 @@
-package cz.aipsafe.ksafe.gui.services.login
+package cz.aipsafe.ksafe.gui.services
+
+import cz.aipsafe.ksafe.gui.services.login.HttpLoginService
+import cz.aipsafe.ksafe.gui.services.login.LoginService
 
 interface Services {
     val loginService: LoginService

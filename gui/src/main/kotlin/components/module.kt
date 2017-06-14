@@ -1,28 +1,14 @@
-package cz.aipsafe.ksafe.gui.module
+package cz.aipsafe.ksafe.gui.components.module
 
-import cz.aipsafe.ksafe.gui.component.Component
+import cz.aipsafe.ksafe.gui.components.base.Component
+import cz.aipsafe.ksafe.gui.components.html.*
 import cz.aipsafe.ksafe.gui.search.SearchPageComponent
-import cz.aipsafe.ksafe.gui.search.SearchPageSetup
-import cz.aipsafe.ksafe.html.generator
+import cz.aipsafe.ksafe.gui.setup.ModuleSetup
+import cz.aipsafe.ksafe.gui.setup.PageSetup
+import cz.aipsafe.ksafe.gui.setup.SearchPageSetup
 import kotlin.browser.document
 import kotlin.dom.addClass
 import kotlin.dom.clear
-
-/**
- * Module setup. Module has title and contains pages. One page is default page.
- */
-class ModuleSetup (
-    var title: String = "",
-    var defaultPageIndex: Int = 0,
-    var pages: List<PageSetup> = listOf()
-)
-
-/**
- * Page setup. Use descendants of this abstract setup.
- */
-abstract class PageSetup (
-    var title: String = ""
-)
 
 /**
  * Module Component. Module component has menu and body.

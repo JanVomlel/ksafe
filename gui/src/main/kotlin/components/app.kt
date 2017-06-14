@@ -1,24 +1,15 @@
-package cz.aipsafe.ksafe.gui.app
+package cz.aipsafe.ksafe.gui.components.app
 
-import cz.aipsafe.ksafe.gui.component.Component
-import cz.aipsafe.ksafe.gui.module.ModuleComponent
-import cz.aipsafe.ksafe.gui.module.ModuleSetup
-import cz.aipsafe.ksafe.gui.services.login.Services
+import cz.aipsafe.ksafe.gui.components.base.Component
+import cz.aipsafe.ksafe.gui.components.html.*
+import cz.aipsafe.ksafe.gui.components.module.ModuleComponent
+import cz.aipsafe.ksafe.gui.setup.AppSetup
+import cz.aipsafe.ksafe.gui.setup.ModuleSetup
 import kotlin.browser.document
-import kotlin.dom.clear
-import cz.aipsafe.ksafe.html.*
 import kotlin.dom.addClass
+import kotlin.dom.clear
 import kotlin.dom.removeClass
 
-/**
- * Application setup. Application contains modules, one of them is default.
- */
-class AppSetup(
-        var title: String = "SAFE",
-        var defaultModuleIndex: Int = 0,
-        var modules: List<ModuleSetup> = listOf<ModuleSetup>(),
-        val services: Services
-)
 
 /**
  * Application component. Contains menu and body.
@@ -179,7 +170,7 @@ class AppMenuItemComponent(setup: ModuleSetup, selectedSetup: Boolean = false): 
  */
 class AppBodyComponent(setup: AppSetup): Component {
 
-    private val modules = setup.modules.map { it ->  ModuleComponent(it)}
+    private val modules = setup.modules.map { it ->  ModuleComponent(it) }
 
     /**
      * Selected menu item.

@@ -1,12 +1,12 @@
-package cz.aipsafe.ksafe.gui.login
+package cz.aipsafe.ksafe.gui.components.login
 
-import cz.aipsafe.ksafe.gui.app.AppSetup
-import cz.aipsafe.ksafe.gui.component.Component
+import cz.aipsafe.ksafe.gui.components.base.Component
+import cz.aipsafe.ksafe.gui.components.html.*
+import cz.aipsafe.ksafe.gui.components.html.generator
 import cz.aipsafe.ksafe.gui.services.login.Action
 import cz.aipsafe.ksafe.gui.services.login.Login
 import cz.aipsafe.ksafe.gui.services.login.LoginPostRequest
-import cz.aipsafe.ksafe.html.generate
-import cz.aipsafe.ksafe.html.generator
+import cz.aipsafe.ksafe.gui.setup.AppSetup
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLInputElement
 import kotlin.browser.document

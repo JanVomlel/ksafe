@@ -1,17 +1,9 @@
 package cz.aipsafe.ksafe.gui.search
 
-import cz.aipsafe.ksafe.gui.module.ModulePageComponent
-import cz.aipsafe.ksafe.gui.module.PageSetup
-import cz.aipsafe.ksafe.html.generator
+import cz.aipsafe.ksafe.gui.components.html.*
+import cz.aipsafe.ksafe.gui.components.module.ModulePageComponent
+import cz.aipsafe.ksafe.gui.setup.SearchPageSetup
 import kotlin.browser.document
-
-/**
- * Setup for search page.
- */
-class SearchPageSetup(
-        title: String = "",
-        var query: String = ""
-): PageSetup(title)
 
 /*
  * Module search page.
