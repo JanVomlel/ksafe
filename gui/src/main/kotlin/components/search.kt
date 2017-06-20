@@ -21,3 +21,4 @@ class SearchPageComponent(setup: SearchPageSetup): ModulePageComponent() {
     }
 }
 
+

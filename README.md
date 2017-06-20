@@ -18,8 +18,8 @@ gradle build
 
 5. Add two contexts to Apache Tocat (xml files in conf/catalina/localhost tomcat directory)
 ```
-<Context docBase="...project path to ksafe...\www\build\libs\www-1.0-SNAPSHOT.war" path="/ksafe-www" />
-<Context docBase="...project path to ksafe...\gui\build\libs\gui-1.0-SNAPSHOT.war" path="/ksafe-www" />
+<Context docBase="...project path to ksafe...\www\build\libs\ksafe-www-1.0-SNAPSHOT.war" path="/ksafe-www" />
+<Context docBase="...project path to ksafe...\gui\build\libs\ksafe-gui-1.0-SNAPSHOT.war" path="/ksafe-www" />
 ```
 
 6. Run Tomcat

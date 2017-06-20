@@ -3,3 +3,6 @@ include 'shared'
 include 'www'
 include 'gui'
 
+project(":shared").name = "ksafe-shared"
+project(":www").name = "ksafe-www"
+project(":gui").name = "ksafe-gui"

@@ -25,7 +25,7 @@ dependencies {
     compile group: 'javax', name: 'javaee-api', version: '7.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'com.github.salomonbrys.kotson:kotson:2.5.0'
-    compile project(':shared')
+    compile project(':ksafe-shared')
 }
 
 jar.enabled = true
