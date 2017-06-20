@@ -47,25 +47,21 @@ compileKotlin2Js {
     kotlinOptions.sourceMap = true
 }
 
-task copyShared {
-    copy {
-        into "/build/generated-src"
-        from "../shared/src/main"
-    }
+task copyShared(type: Copy) {
+    into "/build/generated-src"
+    from "../shared/src/main"
 }
 
 compileKotlin2Js {
     dependsOn(copyShared)
 }
 
-task downloadDependencies {
+task downloadDependencies(type: Copy) {
 
     dependsOn jar
 
-    copy {
-        into "/build/libs"
-        from configurations.compile
-    }
+    into "/build/libs"
+    from configurations.compile
 }
 
 task extractJSJars {
