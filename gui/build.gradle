@@ -32,6 +32,10 @@ dependencies {
     compile "org.jetbrains.kotlinx:kotlinx-html-js:bootstrap-1.1.4-dev-58-49"
 }
 
+sourceSets {
+    main.kotlin.srcDirs += '/build/generated-src/kotlin'
+}
+
 build.doLast {
     copy {
         into "/build/libs"
@@ -43,6 +47,17 @@ compileKotlin2Js {
     //kotlinOptions.outputFile = "build/web/app.js"
     //.moduleKind = "amd"
     kotlinOptions.sourceMap = true
+}
+
+task copyShared {
+    copy {
+        into "/build/generated-src"
+        from "../shared/src/main"
+    }
+}
+
+compileKotlin2Js {
+    dependsOn(copyShared)
 }
 
 task downloadDependencies {

@@ -3,10 +3,12 @@ package cz.aipsafe.ksafe.gui.components.login
 import cz.aipsafe.ksafe.gui.components.base.Component
 import cz.aipsafe.ksafe.gui.components.html.*
 import cz.aipsafe.ksafe.gui.components.html.generator
-import cz.aipsafe.ksafe.gui.services.login.Action
-import cz.aipsafe.ksafe.gui.services.login.Login
-import cz.aipsafe.ksafe.gui.services.login.LoginPostRequest
+import cz.aipsafe.ksafe.gui.services.login.LoginService
 import cz.aipsafe.ksafe.gui.setup.AppSetup
+import cz.aipsafe.ksafe.shared.services.login.Action
+import cz.aipsafe.ksafe.shared.services.login.Login
+import cz.aipsafe.ksafe.shared.services.login.LoginPostRequest
+import cz.aipsafe.ksafe.shared.services.login.User
 import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLInputElement
 import kotlin.browser.document
@@ -16,12 +18,12 @@ import kotlin.dom.clear
 /**
  * Login component.
  */
-class LoginComponent(val setup: AppSetup): Component {
+class LoginComponent(val setup: AppSetup, val service: LoginService): Component {
 
     /**
      * Event generated when user log in
      */
-    var onLogIn = {}
+    var onLogIn = {_: User -> }
 
     private lateinit var errorElement: HTMLDivElement
     private lateinit var userNameElement: HTMLInputElement
@@ -69,9 +71,9 @@ class LoginComponent(val setup: AppSetup): Component {
         val password = passwordElement.value
 
         val request = LoginPostRequest(action = Action.LOGIN.name, login = Login(userName, password))
-        setup.services.loginService.postPromise(request).then({response->
+        service.postPromise(request).then({response->
             if (response.logged) {
-                onLogIn()
+                onLogIn(response.user!!)
             } else {
                 showError("Chybné jméno nebo heslo.")
             }

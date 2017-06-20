@@ -9,9 +9,9 @@ import kotlin.browser.document
 
 fun example() {
 
-    val services = HttpServices("../safe-www")
+    val services = HttpServices("../ksafe-www")
 
-    val app = AppSetup(services = services).apply {
+    val app = AppSetup().apply {
 
         modules += ModuleSetup().apply {
             title = "Smlouvy"
@@ -36,6 +36,6 @@ fun example() {
             }
         }
     }
-    document.body!!.appendChild(RootComponent(app).root)
+    document.body!!.appendChild(RootComponent(app, services).root)
 
 }

@@ -1,21 +1,10 @@
 package cz.aipsafe.ksafe.gui.services.login
 
+import cz.aipsafe.ksafe.shared.services.login.LoginGetResponse
+import cz.aipsafe.ksafe.shared.services.login.LoginPostRequest
+import cz.aipsafe.ksafe.shared.services.login.LoginPostResponse
 import org.w3c.xhr.XMLHttpRequest
 import kotlin.js.Promise
-
-class User(val name: String, val fullName: String)
-
-class LoginGetResponse(val logged: Boolean, val user: User?)
-
-class Login(val name: String, val password: String)
-
-enum class Action {
-    LOGIN, LOGOUT
-}
-
-class LoginPostRequest(val action: String, val login: Login? = null)
-
-class LoginPostResponse(val logged: Boolean, val user: User?)
 
 interface LoginService {
 

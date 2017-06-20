@@ -1,15 +1,12 @@
 package cz.aipsafe.ksafe.gui.setup
 
-import cz.aipsafe.ksafe.gui.services.Services
-
 /**
  * Application setup. Application contains modules, one of them is default.
  */
 class AppSetup(
         var title: String = "SAFE",
         var defaultModuleIndex: Int = 0,
-        var modules: List<ModuleSetup> = listOf<ModuleSetup>(),
-        val services: Services
+        var modules: List<ModuleSetup> = listOf<ModuleSetup>()
 )
 
 /**

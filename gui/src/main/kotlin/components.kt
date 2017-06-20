@@ -41,9 +41,11 @@ val structure = Structure(RootComponent::class).apply {
 
 class Structure<out T: Component>(component: KClass<T>) {
 
+    val name = component.toString()
+
     var manages: List<Structure<Component>> = listOf()
 
     fun <R: Component> m(component: KClass<R>, apply: Structure<R>.()->Unit = {}) {
-        manages += Structure(component)
+        manages += Structure(component).apply(apply)
     }
 }

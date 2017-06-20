@@ -1,29 +1,16 @@
-package cz.aipsafe.ksafe.www.login
+package cz.aipsafe.ksafe.www.services.login
 
 import com.google.gson.Gson
+import cz.aipsafe.ksafe.shared.services.login.*
 import java.nio.charset.Charset
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class User(val name: String, val fullName: String)
-
-class LoginGetResponse(val logged: Boolean, val user: User?)
-
-class Login(val name: String = "", val password: String = "")
-
-enum class Action {
-    LOGIN, LOGOUT
-}
-
-class LoginPostRequest(val action: String = Action.LOGOUT.name, val login: Login? = null)
-
-class LoginPostResponse(val logged: Boolean, val user: User?)
-
 val gson = Gson()
 
-@WebServlet(name = "Login", value = "/login")
+@WebServlet(name = "Login", value = loginPath)
 class LoginController : HttpServlet() {
 
     override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {

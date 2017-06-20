@@ -3,6 +3,7 @@ package cz.aipsafe.ksafe.gui.components.app
 import cz.aipsafe.ksafe.gui.components.base.Component
 import cz.aipsafe.ksafe.gui.components.html.*
 import cz.aipsafe.ksafe.gui.components.module.ModuleComponent
+import cz.aipsafe.ksafe.gui.model.AppModel
 import cz.aipsafe.ksafe.gui.setup.AppSetup
 import cz.aipsafe.ksafe.gui.setup.ModuleSetup
 import kotlin.browser.document
@@ -14,9 +15,9 @@ import kotlin.dom.removeClass
 /**
  * Application component. Contains menu and body.
  */
-class AppComponent(setup: AppSetup): Component {
+class AppComponent(setup: AppSetup, model: AppModel): Component {
 
-    private val appMenu = AppMenuComponent(setup).apply {
+    private val appMenu = AppMenuComponent(setup, model).apply {
         onSelectItemRequest = {
             body.selectedIndex = it
             selectedIndex = it
@@ -42,7 +43,7 @@ class AppComponent(setup: AppSetup): Component {
 /**
  * Application menu component. Contains application menu items.
  */
-class AppMenuComponent(setup: AppSetup): Component {
+class AppMenuComponent(setup: AppSetup, model: AppModel): Component {
 
     private val menuItems = setup.modules.mapIndexed { index, it  ->
         val component = AppMenuItemComponent(it)
@@ -111,7 +112,7 @@ class AppMenuComponent(setup: AppSetup): Component {
                             el.onclick = {
                                 onLogoutRequest()
                             }
-                            +"Odhlásit"
+                            +"Odhlásit ${model.user.fullName}"
                         }
                     }
                 }
