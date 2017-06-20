@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gui/gui.iml" filepath="$PROJECT_DIR$/.idea/modules/gui/gui.iml" group="gui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gui/gui_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gui/gui_main.iml" group="gui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gui/gui_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gui/gui_test.iml" group="gui" />
+      <module fileurl="file://$PROJECT_DIR$/ksafe.iml" filepath="$PROJECT_DIR$/ksafe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared/shared.iml" filepath="$PROJECT_DIR$/.idea/modules/shared/shared.iml" group="shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared/shared_main.iml" filepath="$PROJECT_DIR$/.idea/modules/shared/shared_main.iml" group="shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared/shared_test.iml" filepath="$PROJECT_DIR$/.idea/modules/shared/shared_test.iml" group="shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/www/www.iml" filepath="$PROJECT_DIR$/.idea/modules/www/www.iml" group="www" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/www/www_main.iml" filepath="$PROJECT_DIR$/.idea/modules/www/www_main.iml" group="www" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/www/www_test.iml" filepath="$PROJECT_DIR$/.idea/modules/www/www_test.iml" group="www" />
+    </modules>
+  </component>
+</project>
