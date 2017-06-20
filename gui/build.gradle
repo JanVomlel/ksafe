@@ -1,5 +1,4 @@
 
-apply plugin: 'idea'
 apply plugin: 'kotlin2js'
 apply plugin: 'war'
 apply plugin: 'maven-publish'
