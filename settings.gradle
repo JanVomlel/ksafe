@@ -1,4 +1,4 @@
-rootProject.name = 'safe'
+rootProject.name = 'ksafe'
 include 'shared'
 include 'www'
 include 'gui'

@@ -1,6 +1,5 @@
-group 'cz.aipsafe.ksafe'
-version '1.0-SNAPSHOT'
 
+apply plugin: 'idea'
 apply plugin: 'kotlin'
 apply plugin: 'war'
 apply plugin: 'maven-publish'
