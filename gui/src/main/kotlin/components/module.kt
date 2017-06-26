@@ -2,6 +2,7 @@ package cz.aipsafe.ksafe.gui.components.module
 
 import cz.aipsafe.ksafe.gui.components.base.Component
 import cz.aipsafe.ksafe.gui.components.html.*
+import cz.aipsafe.ksafe.gui.model.AppModel
 import cz.aipsafe.ksafe.gui.search.SearchPageComponent
 import cz.aipsafe.ksafe.gui.setup.ModuleSetup
 import cz.aipsafe.ksafe.gui.setup.PageSetup
@@ -13,7 +14,7 @@ import kotlin.dom.clear
 /**
  * Module Component. Module component has menu and body.
  */
-class ModuleComponent(setup: ModuleSetup): Component {
+class ModuleComponent(setup: ModuleSetup, model: AppModel): Component {
 
     private val menu: ModuleMenuComponent = ModuleMenuComponent(setup).apply {
         onSelectItemRequest = {index->
@@ -22,7 +23,7 @@ class ModuleComponent(setup: ModuleSetup): Component {
         }
     }
 
-    private val body: ModuleBodyComponent = ModuleBodyComponent(setup)
+    private val body: ModuleBodyComponent = ModuleBodyComponent(setup, model)
 
     override val root = document.generator.div {
         el.classList.add(::ModuleComponent.name)
@@ -137,11 +138,11 @@ class ModuleMenuItemComponent(setup: PageSetup, selectedSetup: Boolean = false):
 /**
  * Module body component. Contains module pages. One of the pages is selected.
  */
-class ModuleBodyComponent(setup: ModuleSetup): Component {
+class ModuleBodyComponent(setup: ModuleSetup, model: AppModel): Component {
 
     private val pages: List<ModulePageComponent> = setup.pages.map { it  ->
         val component = when(it) {
-            is SearchPageSetup -> SearchPageComponent(it)
+            is SearchPageSetup -> SearchPageComponent(it, model)
             else -> throw IllegalArgumentException("Unknown menu item")
         }
         component

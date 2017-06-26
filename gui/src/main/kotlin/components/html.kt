@@ -124,6 +124,14 @@ class HTMLDOMGenerator<T: HTMLElement>(val forElement: T? = null) {
         return accept(document.create.td(), property, block)
     }
 
+    fun thead(property: KMutableProperty0<HTMLTableSectionElement>? = null, block: HTMLDOMGenerator<HTMLTableSectionElement>.()->Unit = {}): HTMLTableSectionElement {
+        return accept(document.create.thead(), property, block)
+    }
+
+    fun tbody(property: KMutableProperty0<HTMLTableSectionElement>? = null, block: HTMLDOMGenerator<HTMLTableSectionElement>.()->Unit = {}): HTMLTableSectionElement {
+        return accept(document.create.tbody(), property, block)
+    }
+
     fun a(property: KMutableProperty0<HTMLAnchorElement>? = null, block: HTMLDOMGenerator<HTMLAnchorElement>.()->Unit = {}): HTMLAnchorElement {
         return accept(document.create.a(), property, block)
     }

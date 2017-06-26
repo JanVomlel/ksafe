@@ -30,7 +30,8 @@ abstract class PageSetup (
  */
 class SearchPageSetup(
         title: String = "",
-        var query: String = ""
+        var content: SearchTableSetup = SearchTableSetup(title = title)
 ): PageSetup(title)
 
+class SearchTableSetup(var title: String = "", var query: String = "")
 

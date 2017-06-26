@@ -17,22 +17,22 @@ fun example() {
             title = "Smlouvy"
             pages += SearchPageSetup().apply {
                 title = "Moje smlouvy"
-                query = "Smluva(user = \$USER)"
+                content.query = "Smluva(user = \$USER)"
             }
             pages += SearchPageSetup().apply {
                 title = "Najdi smlouvu"
-                query = "Smluva()"
+                content.query = "Smluva()"
             }
         }
         modules += ModuleSetup().apply {
             title = "Faktury"
             pages += SearchPageSetup().apply {
                 title = "Moje faktury"
-                query = "Faktura(user = \$USER)"
+                content.query = "Faktura(user = \$USER)"
             }
             pages += SearchPageSetup().apply {
                 title = "Najdi fakturu"
-                query = "Faktura()"
+                content.query = "Faktura()"
             }
         }
     }

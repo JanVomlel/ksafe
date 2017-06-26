@@ -25,7 +25,7 @@ class AppComponent(setup: AppSetup, model: AppModel): Component {
         onLogoutRequest = {this@AppComponent.onLogoutRequest()}
     }
 
-    private val body = AppBodyComponent(setup)
+    private val body = AppBodyComponent(setup, model)
 
     /**
      * When logout is requested.
@@ -169,9 +169,9 @@ class AppMenuItemComponent(setup: ModuleSetup, selectedSetup: Boolean = false): 
 /**
  * Application body component. Contains application modules.
  */
-class AppBodyComponent(setup: AppSetup): Component {
+class AppBodyComponent(setup: AppSetup, model: AppModel): Component {
 
-    private val modules = setup.modules.map { it ->  ModuleComponent(it) }
+    private val modules = setup.modules.map { it ->  ModuleComponent(it, model) }
 
     /**
      * Selected menu item.
