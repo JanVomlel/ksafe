@@ -24,7 +24,7 @@ class SearchController : HttpServlet() {
 
         val count = if (request.count >= 0) request.count else 10
 
-        val items = (1 to count).toList().map { SearchItem(ObjectInfo(it.toLong(), "aaa ${it}", "aaa"), listOf(Property("id", StringPropertyValue(it.toString())))) }
+        val items = (1 to count).toList().map { SearchItem(ObjectInfo(it.toLong(), "aaa $it", "aaa"), listOf(Property("id", StringPropertyValue(it.toString())))) }
 
         val response = SearchPostResponse(items)
         val responseJSON = response.jsonize()

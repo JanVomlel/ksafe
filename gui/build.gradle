@@ -1,10 +1,10 @@
 
-apply plugin: 'kotlin2js'
-apply plugin: 'war'
-apply plugin: 'maven-publish'
+apply plugin: "kotlin2js"
+apply plugin: "war"
+apply plugin: "maven-publish"
 
 buildscript {
-    ext.kotlin_version = '1.1.4-dev-600'//'1.1.2-4'
+    ext.kotlin_version = "1.1.4-dev-600"
 
     repositories {
         mavenCentral()
@@ -26,58 +26,56 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    //compile 'org.jetbrains.kotlinx:kotlinx-html-js:0.6.3'
     compile "org.jetbrains.kotlinx:kotlinx-html-js:bootstrap-1.1.4-dev-58-49"
+}
+
+task copySharedSources(type: Copy) {
+    description "Copy shared sources from shared module."
+    from "../shared/src/main"
+    into "/build/generated-src"
 }
 
 sourceSets {
     main.kotlin.srcDirs += '/build/generated-src/kotlin'
 }
 
-build.doLast {
-    copy {
-        into "/build/libs"
-        from configurations.compile
-    }
-}
-
 compileKotlin2Js {
-    //kotlinOptions.outputFile = "build/web/app.js"
-    //.moduleKind = "amd"
+    dependsOn(copySharedSources)
     kotlinOptions.sourceMap = true
 }
 
-task copyShared(type: Copy) {
-    into "/build/generated-src"
-    from "../shared/src/main"
-}
-
-compileKotlin2Js {
-    dependsOn(copyShared)
-}
-
 task downloadDependencies(type: Copy) {
-
+    description "Download dependent jars into libs directory."
     dependsOn jar
-
-    into "/build/libs"
     from configurations.compile
+    into "/build/libs"
+}
+
+task addSourcesToJS(type: Copy) {
+    description "Add sources into js directory"
+    dependsOn copySharedSources
+    from("src/main/kotlin") {
+        into "ksafe-gui-src/kotlin"
+    }
+    from("build/generated-src/kotlin") {
+        into "ksafe-gui-generated-src/kotlin"
+    }
+    into "build/js"
 }
 
 task extractJSJars {
+    description "Extract jars with javascript into js directory."
 
     dependsOn jar, downloadDependencies
 
-    def guiJars = fileTree("${projectDir}/build/libs").include('*.jar')
-    def guiSourcesDir = fileTree("${projectDir}/src/main")
-    def guiOutputDir = "$buildDir/js"
+    def guiJars = fileTree("build/libs").include('*.jar')
+    def guiOutputDir = "build/js"
 
     inputs.files(guiJars)
-    inputs.files(guiSourcesDir)
     outputs.dir(guiOutputDir)
 
     doLast {
-        def guiContent = guiJars.collect {jarContent->
+        def guiContent = guiJars.collect { jarContent ->
             zipTree(jarContent).filter {file->
                 file.path.endsWith(".js") || file.path.endsWith(".map")
             }
@@ -86,26 +84,20 @@ task extractJSJars {
             from guiContent
             into guiOutputDir
 
-            filter {line->
-                line.replace("file://C:/projects/safe/ksafe/ksafe/gui/src/main/", "src/")
+            filesMatching("*.map") {
+                filter { line ->
+                    line
+                            .replace("file://C:/projects/safe/ksafe/ksafe/gui/src/main/kotlin", "ksafe-gui-src/kotlin")
+                            .replace("file://C:/projects/safe/ksafe/ksafe/gui/build/generated-src/kotlin", "ksafe-gui-generated-src/kotlin")
+                }
             }
-
         }
-
-        copy {
-            from guiSourcesDir
-            into "${guiOutputDir}/src"
-        }
-
     }
 }
 
-
-/*
-jar.enabled = true
-*/
 war {
     dependsOn extractJSJars
+    dependsOn addSourcesToJS
     inputs.dir("${projectDir}/build/js")
     from("${projectDir}/build/js") {
         into "js"

@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-fun ahoj(name: String) = "Ahoj ${name}"
+fun ahoj(name: String) = "Ahoj $name"
 
 fun main(args: Array<String>) {
     println(ahoj("H"))

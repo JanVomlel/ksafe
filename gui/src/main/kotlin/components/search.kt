@@ -8,10 +8,8 @@ import cz.aipsafe.ksafe.gui.setup.SearchPageSetup
 import cz.aipsafe.ksafe.gui.setup.SearchTableSetup
 import cz.aipsafe.ksafe.shared.services.common.DoublePropertyValue
 import cz.aipsafe.ksafe.shared.services.common.StringPropertyValue
-import cz.aipsafe.ksafe.shared.services.login.LoginPostRequest
 import cz.aipsafe.ksafe.shared.services.search.SearchPostRequest
 import cz.aipsafe.ksafe.shared.services.search.SearchPostResponse
-import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLTableSectionElement
 import kotlin.browser.document
 import kotlin.dom.addClass

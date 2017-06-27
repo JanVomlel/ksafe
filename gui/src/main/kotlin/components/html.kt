@@ -18,10 +18,10 @@ fun <T: HTMLElement> T.regenerate (block: HTMLDOMGenerator<T>.()->Unit) {
 }
 
 val Document.generator: HTMLDOMGenerator<HTMLElement> get() {
-    return HTMLDOMGenerator<HTMLElement>()
+    return HTMLDOMGenerator()
 }
 
-class HTMLDOMGenerator<T: HTMLElement>(val forElement: T? = null) {
+class HTMLDOMGenerator<out T: HTMLElement>(val forElement: T? = null) {
 
     val el: T get() = forElement!!
 
@@ -42,10 +42,6 @@ class HTMLDOMGenerator<T: HTMLElement>(val forElement: T? = null) {
         forElement?.appendChild(el)
         property?.set(el)
         return el
-    }
-
-    fun to(property: KMutableProperty0<T>) {
-        property.set(forElement!!)
     }
 
     fun div(property: KMutableProperty0<HTMLDivElement>? = null, block: HTMLDOMGenerator<HTMLDivElement>.()->Unit = {}): HTMLDivElement {

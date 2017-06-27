@@ -1,5 +1,5 @@
 allprojects {
-    group 'cz.aipsafe.ksafe'
-    version '1.0-SNAPSHOT'
+    group "cz.aipsafe.ksafe"
+    version "1.0-SNAPSHOT"
 }
 

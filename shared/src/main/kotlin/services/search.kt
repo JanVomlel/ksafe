@@ -26,7 +26,7 @@ class SearchItem(val info: ObjectInfo, val properties: List<Property>) {
     fun jsonize() = JSONSearchItem(info.jsonize(), properties.map { it.jsonize() }.toTypedArray())
 }
 
-class Metadata()
+class Metadata
 
 class JSONSearchPostRequest(
         val query: String,

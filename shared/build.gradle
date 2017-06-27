@@ -1,20 +1,17 @@
 
 buildscript {
-    ext.kotlin_version = '1.1.2-4'//'1.1.4-dev-600'
+    ext.kotlin_version = "1.1.3"
 
     repositories {
         mavenCentral()
-        maven {
-            url  "https://dl.bintray.com/kotlin/kotlin-dev/"
-        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-apply plugin: 'kotlin'
-apply plugin: 'maven-publish'
+apply plugin: "kotlin"
+apply plugin: "maven-publish"
 
 repositories {
     mavenCentral()
